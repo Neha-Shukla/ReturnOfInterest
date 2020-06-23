@@ -1,0 +1,13 @@
+.Btn-container {
+    margin-left: 300px;
+    margin-right: 300px;
+}
+
+.add-ether-btn{
+    padding: 13px 35px;
+    font-size: 16px;
+    font-weight: 700;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 5px;
+}

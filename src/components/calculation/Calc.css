@@ -1,0 +1,29 @@
+.calc-container {
+    border: 1px solid white;
+    margin: 10px;
+    border-radius: 20px;
+}
+
+.calc-text {
+    padding: 13px 35px;
+    font-size: 16px;
+    font-weight: 700;
+    border: 2px solid white;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-left: 500px;
+    margin-right: 500px;
+    font-weight: 700px;
+    background-color: transparent;
+    color: white;
+    
+}
+
+.reset-btn, .join-btn{
+    padding: 13px 35px;
+    font-size: 16px;
+    font-weight: 700;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 5px;
+}
