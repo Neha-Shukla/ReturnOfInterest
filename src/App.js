@@ -12,6 +12,7 @@ class App extends Component {
   render() {
     return (
       <div className="main">
+      <center>
         <div className="header-container">
           <Header></Header>
         </div>
@@ -27,6 +28,7 @@ class App extends Component {
           <Collection></Collection>
         </div>
         <Footer></Footer>
+        </center>
       </div>
     );
   }

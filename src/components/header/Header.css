@@ -1,10 +1,24 @@
 .header{
-    border: 1px solid white;
-    border-radius: 20px;
-    margin-bottom: 10px;
-    margin-right: 10px;
+    background-color: tomato;
     color: white;
+    
+    
 }
+
+.heading{
+    float: left;
+    padding-left: 12px;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
