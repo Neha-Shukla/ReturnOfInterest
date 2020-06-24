@@ -2,7 +2,7 @@
   "name": "eth-roi",
   "version": "0.1.0",
   "description": "An Ethereum ROI",
-  "author": "gregory@dappuniversity.com",
+  "author": "Neha",
   "dependencies": {
     "babel-polyfill": "6.26.0",
     "babel-preset-env": "1.7.0",
@@ -37,14 +37,6 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "main": "truffle-config.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Neha-Shukla/ReturnOfInterest.git"
-  },
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Neha-Shukla/ReturnOfInterest/issues"
-  },
-  "homepage": "https://github.com/Neha-Shukla/ReturnOfInterest#readme"
+  "main": "truffle-config.js"
+ 
 }
