@@ -1,0 +1,33 @@
+.info-container{
+    padding: 15px 15px;
+    border: 1px solid white;
+   margin: 10px 10px 0 10px; 
+   border-radius: 20px;   
+}
+ .lists{
+     list-style: none;
+ }
+
+
+ .title{
+     font-size: 16px;
+     color: white;
+ }
+ .text{
+     float: left;
+     color: white;
+ }
+ .blue-text{
+    color: white;
+ }
+ 
+ .withdraw-btn, .copy-btn{
+     min-width: 900px;
+     background-color: transparent;
+     border: 1px solid white;
+     border-radius: 10px;
+     color: white;
+
+ }
+
+ 
