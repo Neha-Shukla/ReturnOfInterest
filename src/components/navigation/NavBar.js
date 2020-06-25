@@ -1,23 +1,22 @@
 import React from "react";
-import Sponsors from "./button-details/Sponsors";
-import Guide from "./button-details/Guide";
-import Wallet from "./button-details/Wallet";
 import './NavBar.css';
+import {Link, Router, BrowserRouter} from 'react-router-dom';
+import Guide from './button-details/Guide';
 const NavBar = () => {
   return (
+    
     <div>
       <div className="Buttons">
         <div className="btn-text">
-          <a href={Sponsors}> TOP 4 SPONSORS</a>
+          <BrowserRouter>
+          <Link to="/guide" component={Guide}>Guide</Link>
+          </BrowserRouter>
+       
         </div>
-        <div className="btn-text">
-          <a href={Guide}> GUIDE</a>
-        </div>
-        <div className="btn-text">
-          <a href={Wallet}> WALLET TUTORIAL</a>
-        </div>
+        
       </div>
     </div>
+    
   );
 };
 

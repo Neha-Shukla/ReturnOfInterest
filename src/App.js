@@ -31,7 +31,7 @@ class App extends Component {
   }
    
   state={
-    account:"hello"
+    account:"null"
   }
   async loadBlockchainData() {
     const web3 = window.web3
@@ -54,6 +54,7 @@ class App extends Component {
   render() {
     return (
       <div className="main">
+      <center>
         <div className="header-container">
           <Header address={this.state.account}></Header>
         </div>
@@ -69,6 +70,7 @@ class App extends Component {
           <Collection></Collection>
         </div>
         <Footer></Footer>
+        </center>
       </div>
     );
   }
