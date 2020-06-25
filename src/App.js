@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component } from "react";
 import "./App.css";
 import Header from "./components/header/Header";
 import Logo from "./components/main/logo/Logo";
@@ -29,13 +29,18 @@ class App extends Component {
       window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
     }
   }
-
+   
+  state={
+    account:"hello"
+  }
   async loadBlockchainData() {
     const web3 = window.web3
     // Load account
     const accounts = await web3.eth.getAccounts();
+    console.log(accounts[0]);
     this.setState({ account: accounts[0] })
-    const networkId = await web3.eth.net.getId()
+    console.log(this.state);
+    // const networkId = await web3.eth.net.getId()
     //const networkData = roi.networks[networkId]
     // if(networkData) {
     //   const roi = web3.eth.Contract(ReturnOnInterest.abi, networkData.address)
