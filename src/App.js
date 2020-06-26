@@ -10,6 +10,7 @@ import Footer from "./components/footer/Footer";
 import Web3 from "web3";
 import ReturnOnInterest from "./abis/ReturnOnInterest.json";
 
+
 class App extends Component {
   async componentWillMount() {
     await this.loadWeb3();
@@ -77,6 +78,7 @@ class App extends Component {
     }
   }
   render() {
+   
     return (
       <div className="main">
         <center>

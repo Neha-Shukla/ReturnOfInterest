@@ -5,7 +5,7 @@ contract ReturnOnInterest {
     uint256 public currUserId = 0;
     uint256 public totalWithdrawn = 0;
     uint256 internal activeUserId = 1;
-    uint256 public totalInvestment=0;
+    uint256 public totalInvestment = 0;
     struct User {
         bool isExist;
         uint256 id;
@@ -28,7 +28,7 @@ contract ReturnOnInterest {
         require(users[msg.sender].isExist == false, "user already exist");
         uint256 _amount = msg.value;
         require(_amount >= 0.1 ether, "Insufficient balance");
-        totalInvestment+=_amount;
+        totalInvestment += _amount;
         currUserId += 1;
         User memory user = User({
             isExist: true,
@@ -56,7 +56,7 @@ contract ReturnOnInterest {
         uint256 _amount = msg.value;
         require(users[_refererId].isExist, "incorrect referal id");
         require(_amount >= 0.1 ether, "Insufficient balance");
-        totalInvestment+=_amount;
+        totalInvestment += _amount;
         currUserId += 1;
         User memory user = User({
             isExist: true,
@@ -125,19 +125,21 @@ contract ReturnOnInterest {
     function getROI(uint256 _amount) public pure returns (uint256) {
         return (5 * _amount) / 100;
     }
-    function getUserDailyIncome(address _account) public view returns (uint256) {
+
+    function getUserDailyIncome(address _account)
+        public
+        view
+        returns (uint256)
+    {
         uint256 _amount = users[_account].investment;
         return (5 * _amount) / 100;
     }
 
-    function getTotalInvestment() public view returns(uint256){
-        return totalInvestment;
-    }
-    function getTotalWithdrawnAmount() public view returns (uint256) {
-        return totalWithdrawn;
-    }
-
-    function getIncomeWithdrawnToWallet(address _account) public view returns(uint256){
+    function getIncomeWithdrawnToWallet(address _account)
+        public
+        view
+        returns (uint256)
+    {
         return users[_account].incomeWithdrawn;
     }
 }
