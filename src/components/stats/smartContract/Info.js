@@ -1,6 +1,6 @@
 import React from "react";
 
-const Info = () => {
+const Info = (props) => {
   return (
     <div className="info-container">
       <div className="title">SMART CONTRACT INFO</div>
@@ -8,19 +8,19 @@ const Info = () => {
         <ul className="lists">
           <li>
             <div className="text">Smart contract address</div>
-            <div className="blue-text">2974974yny3ry3463aj08273ka8xm</div>
+            <div className="blue-text">{props.address}</div>
           </li>
           <li>
             <div className="text">Smart Contract Balance</div>
-            <div className="blue-text">---ETH</div>
+            <div className="blue-text">{props.contractBalance} ETH</div>
           </li>
           <li>
             <div className="text">Amount withdrawn by members</div>
-            <div className="blue-text">---ETH</div>
+            <div className="blue-text">{props.amountWithdrawn} ETH</div>
           </li>
           <li>
             <div className="text">Amount in the daily pool</div>
-            <div className="blue-text">---ETH</div>
+            <div className="blue-text">{props.amountInDailyPool} ETH</div>
           </li>
           <li>
             <div className="text">Maximum value of ETHER from top referrer</div>

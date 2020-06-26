@@ -9,7 +9,7 @@ const NavBar = () => {
       <div className="Buttons">
         <div className="btn-text">
           <BrowserRouter>
-          <Link to="/guide" component={Guide}>Guide</Link>
+          <Link to="/guide" component={Guide}></Link>
           </BrowserRouter>
        
         </div>

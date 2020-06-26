@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PersonalStats = () => {
+const PersonalStats = (props) => {
     return (
      <div className="info-container">
      <div className="title">PERSONAL STATISTICS</div>
@@ -16,11 +16,11 @@ const PersonalStats = () => {
          </li>
          <li>
            <div className="text">Daily income 1%</div>
-           <div className="blue-text">---ETH</div>
+           <div className="blue-text">{props.dailyIncome} ETH</div>
          </li>
          <li>
            <div className="text">Daily referral income</div>
-           <div className="blue-text">---ETH</div>
+           <div className="blue-text">{props.referalIncome} ETH</div>
          </li>
          <li>
            <div className="text">Matching bonus</div>
@@ -32,7 +32,7 @@ const PersonalStats = () => {
          </li>
          <li>
            <div className="text">Income withdrawn to wallet</div>
-           <div className="blue-text">---ETH</div>
+           <div className="blue-text">{props.incomeWithdrawnToWallet} ETH</div>
          </li>
          <li>
            <div className="text">Unwithdrawn income</div>
