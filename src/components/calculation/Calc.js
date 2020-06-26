@@ -1,17 +1,46 @@
-import React from "react";
+import React,{Component} from "react";
 import Btn from "./Buttons/Btn";
 import "./Calc.css";
-const Calc = () => {
-  return (
-    <div className="calc-container">
-      <div className="calc-text">0.0 ETH</div>
+import { useState } from "react";
+import { render } from "react-dom";
+
+export default class Calc extends Component {
+
+
+   constructor(){
+     super();
+     this.state={
+       value:0
+      
+     }
+   }
+    
+   changeData(item){
+     let a=parseFloat(this.state.value+item);
+     
+     this.setState({value:a})
+   }
+ 
+
+  render() {
+  
+    return(
+      <div className="calc-container">
+      <div className="calc-text">{this.state.value}</div>
       <div className="value-Buttons">
-        <Btn></Btn>
-        <button className="reset-btn">RESET</button>
+        <Btn data={
+         { value:this.state.value,
+          changeData:this.changeData.bind(this)
+        }
+
+        }></Btn>
+        <button className="reset-btn" >RESET</button>
         <button className="join-btn">JOIN</button>
       </div>
     </div>
-  );
+    )
+   
+    };
 };
 
-export default Calc;
+// export default Calc;
