@@ -34,7 +34,9 @@ export default class Calc extends Component {
         }
 
         }></Btn>
-        <button className="reset-btn" >RESET</button>
+        <button className="reset-btn" onClick={()=>{
+          this.setState({value:0})
+        }}>RESET</button>
         <button className="join-btn">JOIN</button>
       </div>
     </div>
