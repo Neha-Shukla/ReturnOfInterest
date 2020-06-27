@@ -1,18 +1,9 @@
 import React ,{Component} from 'react';
 import './Btn.css'
-// import {useState} from 'react';
-
-
 
  class Btn extends Component{
-    
-      
-    
-       
    render(){
     return (
-
-
         <div className="Btn-container">
         <button className="add-ether-btn" onClick={()=>{
             this.props.data.changeData(0.1)

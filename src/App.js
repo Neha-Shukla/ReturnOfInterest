@@ -69,7 +69,7 @@ class App extends Component {
         incomeWithdrawnToWallet:web3.utils.fromWei(web3.utils.toBN(await roi.methods.getIncomeWithdrawnToWallet(this.state.account).call()),"ether"),
         totalInvestment: web3.utils.fromWei(web3.utils.toBN(await roi.methods.totalInvestment.call())),
         dailyIncome:web3.utils.fromWei(web3.utils.toBN(await roi.methods.getUserDailyIncome(this.state.account).call()))
-      })
+      });
       
     } else {
       window.alert(
@@ -77,6 +77,19 @@ class App extends Component {
       );
     }
   }
+  enter(entryTime,price){
+    this.setState({ loading: true });
+    this.state.roi.methods.Enter().send({from:this.state.account,value:price})
+    .once('receipt', (receipt) => {
+      this.setState({ loading: false })
+    })
+  }
+
+  constructor(props){
+    super(props);
+    this.enter = this.enter.bind(this);
+  }
+
   render() {
    
     return (
@@ -104,6 +117,7 @@ class App extends Component {
               dailyIncome = {this.state.dailyIncome}
               totalInvestment = {this.state.totalInvestment}
               incomeWithdrawnToWallet = {this.state.incomeWithdrawnToWallet}
+              entry = {this.entry}
             ></Collection>
           </div>
           <Footer></Footer>
