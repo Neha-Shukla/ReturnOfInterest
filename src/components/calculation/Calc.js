@@ -5,13 +5,10 @@ import { useState } from "react";
 import { render } from "react-dom";
 
 export default class Calc extends Component {
-
-
    constructor(){
      super();
      this.state={
        value:0
-      
      }
    }
     
@@ -21,9 +18,7 @@ export default class Calc extends Component {
      this.setState({value:a})
    }
  
-
   render() {
-  
     return(
       <div className="calc-container">
       <div className="calc-text">{this.state.value}</div>
@@ -35,9 +30,15 @@ export default class Calc extends Component {
 
         }></Btn>
         <button className="reset-btn" onClick={()=>{
-          this.setState({value:0})
+          this.setState({value:0.0})
         }}>RESET</button>
-        <button className="join-btn">JOIN</button>
+        <button onClick={(event) => {
+          event.preventDefault()
+          const price = window.web3.utils.toWei(this.productPrice.value.toString(), 'Ether')
+          const time=2772020;
+          this.props.enter(time,price);
+        }}
+          className="join-btn">JOIN</button>
       </div>
     </div>
     )
