@@ -34,11 +34,16 @@ export default class Calc extends Component {
         }}>RESET</button>
         <button onClick={(event) => {
           event.preventDefault()
-          const price = window.web3.utils.toWei(this.productPrice.value.toString(), 'Ether')
+          const price =this.state.value;
           const time=2772020;
-          this.props.enter(time,price);
+         // this.props.enter(time,price);
+         console.log(price);
         }}
           className="join-btn">JOIN</button>
+          <button className="join-btn" onClick={()=>{
+            const name=prompt("enter your  name");
+            console.log(name);
+          }}>Join with rerer</button>
       </div>
     </div>
     )
