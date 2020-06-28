@@ -17,6 +17,7 @@ const Collection = (props) => {
         dailyIncome={props.dailyIncome}
         referalIncome={props.referalIncome}
         incomeWithdrawnToWallet={props.incomeWithdrawnToWallet}
+        withdraws = {props.withdraws}
       ></PersonalStats>
       <Statistics></Statistics>
       <MyOrg totalUsers={props.totalUsers} address={props.address} personalInvited={props.personalInvited}></MyOrg>

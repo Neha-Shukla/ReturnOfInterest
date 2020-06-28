@@ -64,7 +64,7 @@ class App extends Component {
           await web3.eth.getBalance(networkData.address),
           "ether"
         ),
-        amountWithdrawn: web3.utils.toBN(await roi.methods.totalWithdrawn.call()).toString(),
+        amountWithdrawn: web3.utils.fromWei(web3.utils.toBN(await roi.methods.totalWithdrawn.call()).toString(),"ether"),
         referalIncome:web3.utils.fromWei(web3.utils.toBN(await roi.methods.getReferalsIncome(this.state.account).call()),"ether"),
         incomeWithdrawnToWallet:web3.utils.fromWei(web3.utils.toBN(await roi.methods.getIncomeWithdrawnToWallet(this.state.account).call()),"ether"),
         totalInvestment: web3.utils.fromWei(web3.utils.toBN(await roi.methods.totalInvestment.call())),
@@ -79,15 +79,23 @@ class App extends Component {
   }
   enter(entryTime,price){
     this.setState({ loading: true });
-    this.state.roi.methods.Enter().send({from:this.state.account,value:price})
+    this.state.roi.methods.Enter(entryTime).send({from:this.state.account,value:price})
     .once('receipt', (receipt) => {
       this.setState({ loading: false })
     })
   }
 
+  withdraws(){
+    this.setState({ loading: true });
+    this.state.roi.methods.withdraw().send({from:this.state.account})
+    .once('receipt', (receipt) => {
+      this.setState({ loading: false })
+    })
+  }
   constructor(props){
     super(props);
     this.enter = this.enter.bind(this);
+    this.withdraws = this.withdraws.bind(this);
   }
 
   render() {
@@ -105,7 +113,8 @@ class App extends Component {
           </div>
           <div className="App-header">
             <NavBar></NavBar>
-            <Calc></Calc>
+            <Calc enter = {this.enter}>
+            </Calc>
             <Collection
               amountWithdrawn={this.state.amountWithdrawn}
               address={this.state.contract}
@@ -117,7 +126,8 @@ class App extends Component {
               dailyIncome = {this.state.dailyIncome}
               totalInvestment = {this.state.totalInvestment}
               incomeWithdrawnToWallet = {this.state.incomeWithdrawnToWallet}
-              entry = {this.entry}
+              
+              withdraws = {this.withdraws}
             ></Collection>
           </div>
           <Footer></Footer>

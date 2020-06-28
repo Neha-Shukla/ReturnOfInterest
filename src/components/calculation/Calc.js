@@ -10,15 +10,16 @@ export default class Calc extends Component {
      this.state={
        value:0
      }
+     
    }
-    
    changeData(item){
      let a=parseFloat(this.state.value+item);
      
      this.setState({value:a})
    }
- 
+   
   render() {
+    const web3 = window.web3;
     return(
       <div className="calc-container">
       <div className="calc-text">{this.state.value}</div>
@@ -34,7 +35,7 @@ export default class Calc extends Component {
         }}>RESET</button>
         <button onClick={(event) => {
           event.preventDefault()
-          const price = window.web3.utils.toWei(this.productPrice.value.toString(), 'Ether')
+          const price = web3.utils.toBN(web3.utils.toWei(this.state.value)).toString();
           const time=2772020;
           this.props.enter(time,price);
         }}

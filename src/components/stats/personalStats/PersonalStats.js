@@ -41,7 +41,9 @@ const PersonalStats = (props) => {
          
        </ul>
      </div>
-     <button className="withdraw-btn">Withdraw</button>
+     <button onClick={(event) => {
+          event.preventDefault()
+          props.withdraws()}} className="withdraw-btn">Withdraw</button>
      </div>
     )
 }
