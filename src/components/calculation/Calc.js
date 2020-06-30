@@ -38,6 +38,7 @@ export default class Calc extends Component {
           this.props.enter(created_at,web3.utils.toWei(price,"ether"));
         }}
           className="join-btn">JOIN</button>
+
           <button className="join-btn" onClick={()=>{
             const referalId=prompt("enter ReferalId");
             const price = this.state.value.toString();
