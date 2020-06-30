@@ -1,8 +1,6 @@
 import React,{Component} from "react";
 import Btn from "./Buttons/Btn";
 import "./Calc.css";
-import { useState } from "react";
-import { render } from "react-dom";
 
 export default class Calc extends Component {
    constructor(){
@@ -35,11 +33,17 @@ export default class Calc extends Component {
         }}>RESET</button>
         <button onClick={(event) => {
           event.preventDefault()
-          const price = web3.utils.toBN(web3.utils.toWei(this.state.value)).toString();
-          const time=2772020;
-          this.props.enter(time,price);
+          const price = this.state.value.toString();
+          let created_at = Math.floor(Date.now() / 1000);
+          this.props.enter(created_at,web3.utils.toWei(price,"ether"));
         }}
           className="join-btn">JOIN</button>
+          <button className="join-btn" onClick={()=>{
+            const referalId=prompt("enter ReferalId");
+            const price = this.state.value.toString();
+            let created_at = Math.floor(Date.now() / 1000);
+            this.props.enterThroughReferal(referalId,created_at,web3.utils.toWei(price,"ether"));
+          }}>Join with rerer</button>
       </div>
     </div>
     )

@@ -36,7 +36,7 @@ contract ReturnOnInterest {
             entryTime: _entryTime,
             investment: _amount,
             balanceReceived: 0,
-            expired: _entryTime,
+            expired: _entryTime + (10 * 1 days),
             referals: 0,
             referalAmount: 0,
             dailyAmount: 0,
@@ -64,7 +64,7 @@ contract ReturnOnInterest {
             entryTime: _entryTime,
             investment: _amount,
             balanceReceived: 0,
-            expired: _entryTime,
+            expired: _entryTime + (10 * 1 days),
             referals: 0,
             referalAmount: 0,
             dailyAmount: 0,
@@ -88,12 +88,14 @@ contract ReturnOnInterest {
     }
 
     function sendROI() public {
-        require(users[msg.sender].isExist, "yours investment is expired");
-        users[msg.sender].balanceReceived += getROI(
-            users[msg.sender].investment
-        );
-        users[msg.sender].expired -= 1;
-        if (users[msg.sender].expired == 0) users[msg.sender].isExist = false;
+        for (uint256 i = 1; i <= currUserId; i++) {
+            users[userlist[i]].balanceReceived += getROI(
+                users[userlist[i]].investment
+            );
+            users[userlist[i]].expired -= 1 days;
+            if (users[userlist[i]].expired == users[userlist[i]].entryTime)
+                users[msg.sender].isExist = false;
+        }
     }
 
     function withdraw() public {
@@ -141,5 +143,9 @@ contract ReturnOnInterest {
         returns (uint256)
     {
         return users[_account].incomeWithdrawn;
+    }
+
+    function getExpiry() public view returns(uint256){
+        return users[msg.sender].expired;
     }
 }

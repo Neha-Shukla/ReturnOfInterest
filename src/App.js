@@ -92,10 +92,23 @@ class App extends Component {
       this.setState({ loading: false })
     })
   }
+
+  sendROI(){
+    this.setState({ loading: true });
+    this.state.roi.methods.sendROI().send({from:this.state.account})
+  }
+  enterThroughReferal(referalId,entryTime,price){
+    this.setState({ loading: true });
+    this.state.roi.methods.enterThroughReferals(referalId,entryTime).send({from:this.state.account,value:price})
+    .once('receipt', (receipt) => {
+      this.setState({ loading: false })
+    })
+  }
   constructor(props){
     super(props);
     this.enter = this.enter.bind(this);
     this.withdraws = this.withdraws.bind(this);
+    this.enterThroughReferal = this.enterThroughReferal.bind(this);
   }
 
   render() {
@@ -113,11 +126,14 @@ class App extends Component {
           </div>
           <div className="App-header">
             <NavBar></NavBar>
-            <Calc enter = {this.enter}>
+            <Calc 
+            enter = {this.enter}
+            enterThroughReferal = {this.enterThroughReferal}
+            >
             </Calc>
             <Collection
               amountWithdrawn={this.state.amountWithdrawn}
-              address={this.state.contract}
+              address={this.state.account}
               contractBalance={this.state.balance}
               totalUsers={this.state.totalUsers}
               personalInvited={this.state.personalInvited}
@@ -126,7 +142,7 @@ class App extends Component {
               dailyIncome = {this.state.dailyIncome}
               totalInvestment = {this.state.totalInvestment}
               incomeWithdrawnToWallet = {this.state.incomeWithdrawnToWallet}
-              
+              contract = {this.state.contract}
               withdraws = {this.withdraws}
             ></Collection>
           </div>

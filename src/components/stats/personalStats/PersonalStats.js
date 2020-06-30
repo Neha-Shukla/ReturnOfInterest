@@ -19,7 +19,7 @@ const PersonalStats = (props) => {
            <div className="blue-text">{props.dailyIncome} ETH</div>
          </li>
          <li>
-           <div className="text">Daily referral income</div>
+           <div className="text">Referral income</div>
            <div className="blue-text">{props.referalIncome} ETH</div>
          </li>
          <li>
@@ -43,7 +43,9 @@ const PersonalStats = (props) => {
      </div>
      <button onClick={(event) => {
           event.preventDefault()
-          props.withdraws()}} className="withdraw-btn">Withdraw</button>
+          props.withdraws()
+          
+            }} className="withdraw-btn">Withdraw</button>
      </div>
     )
 }
