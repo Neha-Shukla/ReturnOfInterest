@@ -40,6 +40,7 @@ export default class Calc extends Component {
          console.log(price);
         }}
           className="join-btn">JOIN</button>
+
           <button className="join-btn" onClick={()=>{
             const name=prompt("enter your  name");
             console.log(name);
