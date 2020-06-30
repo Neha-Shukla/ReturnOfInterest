@@ -8,7 +8,7 @@ const Info = (props) => {
         <ul className="lists">
           <li>
             <div className="text">Smart contract address</div>
-            <div className="blue-text">{props.address}</div>
+            <div className="blue-text">{props.contract}</div>
           </li>
           <li>
             <div className="text">Smart Contract Balance</div>
