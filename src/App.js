@@ -11,6 +11,7 @@ import Web3 from "web3";
 import ReturnOnInterest from "./abis/ReturnOnInterest.json";
 
 
+
 class App extends Component {
   async componentWillMount() {
     await this.loadWeb3();
@@ -147,6 +148,7 @@ class App extends Component {
             ></Collection>
           </div>
           <Footer></Footer>
+          
         </center>
       </div>
     );
