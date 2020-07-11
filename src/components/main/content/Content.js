@@ -1,11 +1,18 @@
 import React from "react";
-import './Content.css'
-const Content = () => {
+import './Content.css';
+import Counter from '../counter/Counter'
+const Content = (props) => {
   return (
     <div className="content-container">
       <h1>ETHER CHAIN</h1>
       <div className="calc">
-        <span className="hightlight-value">00:00:00</span>
+        <Counter 
+        sendDaily={props.sendDaily}
+        balanceReceived = {props.balanceReceived}
+        >
+          </Counter>
+        <div className="calc">
+        </div>
         <span className="unit">/---ETH</span>
       </div>
       <p>A FULLY DECENTRALISED COMMUNITY FUND,</p>

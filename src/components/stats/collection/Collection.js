@@ -8,7 +8,7 @@ const Collection = (props) => {
   return (
     <div className="main-container">
       <Info
-        address={props.address}
+        contract={props.contract}
         contractBalance={props.contractBalance}
         amountWithdrawn={props.amountWithdrawn}
         amountInDailyPool={props.amountInDailyPool}
@@ -17,8 +17,11 @@ const Collection = (props) => {
         dailyIncome={props.dailyIncome}
         referalIncome={props.referalIncome}
         incomeWithdrawnToWallet={props.incomeWithdrawnToWallet}
+        withdraws = {props.withdraws}
+        balanceReceived = {props.balanceReceived}
       ></PersonalStats>
-      <Statistics></Statistics>
+      <Statistics
+      totalInvestment = {props.totalInvestment}></Statistics>
       <MyOrg totalUsers={props.totalUsers} address={props.address} personalInvited={props.personalInvited}></MyOrg>
     </div>
   );

@@ -6,6 +6,7 @@ contract ReturnOnInterest {
     uint256 public totalWithdrawn = 0;
     uint256 internal activeUserId = 1;
     uint256 public totalInvestment = 0;
+    address payable ownerWallet;
     struct User {
         bool isExist;
         uint256 id;
@@ -23,6 +24,9 @@ contract ReturnOnInterest {
     mapping(address => User) internal users;
     mapping(uint256 => address) internal userlist;
 
+    constructor() public {
+        ownerWallet = msg.sender;
+    }
     //enter by investing amount, get entryTime and expiry time through js
     function Enter(uint256 _entryTime) public payable {
         require(users[msg.sender].isExist == false, "user already exist");
@@ -36,7 +40,7 @@ contract ReturnOnInterest {
             entryTime: _entryTime,
             investment: _amount,
             balanceReceived: 0,
-            expired: _entryTime,
+            expired: _entryTime + (40 days),
             referals: 0,
             referalAmount: 0,
             dailyAmount: 0,
@@ -46,6 +50,7 @@ contract ReturnOnInterest {
 
         users[msg.sender] = user;
         userlist[currUserId] = msg.sender;
+        address(uint256(ownerWallet)).transfer((_amount*10 )/100);
     }
 
     function enterThroughReferals(address _refererId, uint256 _entryTime)
@@ -64,7 +69,7 @@ contract ReturnOnInterest {
             entryTime: _entryTime,
             investment: _amount,
             balanceReceived: 0,
-            expired: _entryTime,
+            expired: _entryTime + (40 days),
             referals: 0,
             referalAmount: 0,
             dailyAmount: 0,
@@ -85,20 +90,25 @@ contract ReturnOnInterest {
             users[_refererId].referalAmount += (_amount * 30) / 100;
             users[_refererId].referals += 1;
         }
+        address(uint256(ownerWallet)).transfer((_amount*10 )/100);
     }
 
     function sendROI() public {
-        require(users[msg.sender].isExist, "yours investment is expired");
-        users[msg.sender].balanceReceived += getROI(
-            users[msg.sender].investment
-        );
-        users[msg.sender].expired -= 1;
-        if (users[msg.sender].expired == 0) users[msg.sender].isExist = false;
+        for (uint256 i = activeUserId; i <= currUserId; i++) {
+            users[userlist[i]].balanceReceived += getROI(
+                users[userlist[i]].investment
+            );
+            users[userlist[i]].expired -= 1 days;
+            if (users[userlist[i]].expired == users[userlist[i]].entryTime){
+                users[msg.sender].isExist = false;
+                activeUserId++;
+            }
+        }
     }
 
     function withdraw() public {
         uint256 _amount = users[msg.sender].balanceReceived +
-            users[msg.sender].referalAmount;
+        users[msg.sender].referalAmount;
         totalWithdrawn += _amount;
         address(uint256(msg.sender)).transfer(_amount);
         users[msg.sender].referalAmount = 0;
@@ -141,5 +151,13 @@ contract ReturnOnInterest {
         returns (uint256)
     {
         return users[_account].incomeWithdrawn;
+    }
+
+    function getExpiry() public view returns(uint256){
+        return users[msg.sender].expired;
+    }
+
+    function getBalanceReceived() public view returns(uint256){
+        return users[msg.sender].balanceReceived;
     }
 }

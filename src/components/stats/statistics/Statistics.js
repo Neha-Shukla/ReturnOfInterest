@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Statistics = () => {
+const Statistics = (props) => {
     return (
         <div className="info-container">
         <div className="title">STATISTICS</div>
@@ -12,7 +12,7 @@ const Statistics = () => {
             </li>
             <li>
               <div className="text">Total amount of invested ETH</div>
-              <div className="blue-text">---</div>
+              <div className="blue-text">{props.totalInvestment}</div>
             </li>
             
           </ul>

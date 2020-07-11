@@ -19,7 +19,7 @@ const PersonalStats = (props) => {
            <div className="blue-text">{props.dailyIncome} ETH</div>
          </li>
          <li>
-           <div className="text">Daily referral income</div>
+           <div className="text">Referral income</div>
            <div className="blue-text">{props.referalIncome} ETH</div>
          </li>
          <li>
@@ -35,13 +35,20 @@ const PersonalStats = (props) => {
            <div className="blue-text">{props.incomeWithdrawnToWallet} ETH</div>
          </li>
          <li>
-           <div className="text">Unwithdrawn income</div>
-           <div className="blue-text">---ETH</div>
+           <div className="text">Daily income Received</div>
+           <div className="blue-text">{props.balanceReceived} ETH</div>
          </li>
          
        </ul>
      </div>
-     <button className="withdraw-btn">Withdraw</button>
+     <button onClick={(event) => {
+          event.preventDefault()
+          try{
+          props.withdraws()
+          }catch(e){
+            console.log("there is issue in withdrawing");
+          }
+            }} className="withdraw-btn">Withdraw</button>
      </div>
     )
 }
