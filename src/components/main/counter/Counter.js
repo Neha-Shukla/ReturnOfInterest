@@ -4,10 +4,10 @@ import React, { Component } from 'react';
 export default class Counter extends Component{
     // const date=new Date();
     state={
-        
         hour:23-new Date().getHours(),
         min:60-new Date().getMinutes(),
         sec:60-new Date().getSeconds(),
+        balance : 0
     }
 
      
@@ -62,17 +62,27 @@ export default class Counter extends Component{
           clearInterval(this.myInterval)
       }
      
+      constructor(){
+        super();
+        }
+        
+      
       
      render(){
-        //  this.timer();
-        //  this.componentWillUnmount();
-        //  this.setState({hour:h});
-    // const date=new Date();
-     
        const {hour,min,sec}=this.state;
 
          return(
+             <>
          <h1>{hour}:{min}:{sec}</h1>
+         <button onClick={(event) => {
+          event.preventDefault()
+          console.log("send");
+         this.props.sendDaily()
+         this.setState({balance : this.state.balance+this.props.balanceReceived});
+         console.log(this.state.balance);
+            }}>SEND DAILY</button>
+            
+         </>
          )
      }
 }

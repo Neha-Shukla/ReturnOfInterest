@@ -32,8 +32,8 @@ class App extends Component {
   }
 
   state = {
-    account: "null",
-    contract: "null",
+    account: "0x",
+    contract: "0x",
     balance: 0,
     totalUsers: 0,
     dailyIncome:0,
@@ -42,9 +42,11 @@ class App extends Component {
     amountInDailyPool:0,
     referalIncome:0,
     incomeWithdrawnToWallet:0,
-    totalInvestment:0
+    totalInvestment:0,
+    balanceReceived:0
   };
   async loadBlockchainData() {
+    try{
     const web3 = window.web3;
     // Load account
     const accounts = await web3.eth.getAccounts();
@@ -65,6 +67,7 @@ class App extends Component {
           await web3.eth.getBalance(networkData.address),
           "ether"
         ),
+        balanceReceived : web3.utils.fromWei(web3.utils.toBN(await roi.methods.getBalanceReceived().call({from:this.state.account})),"ether"),
         amountWithdrawn: web3.utils.fromWei(web3.utils.toBN(await roi.methods.totalWithdrawn.call()).toString(),"ether"),
         referalIncome:web3.utils.fromWei(web3.utils.toBN(await roi.methods.getReferalsIncome(this.state.account).call()),"ether"),
         incomeWithdrawnToWallet:web3.utils.fromWei(web3.utils.toBN(await roi.methods.getIncomeWithdrawnToWallet(this.state.account).call()),"ether"),
@@ -78,27 +81,40 @@ class App extends Component {
       );
     }
   }
-  enter(entryTime,price){
+    catch(e){
+      console.log(e);
+      console.log("you have an error");
+    }
+  }
+  async enter(entryTime,price){
     this.setState({ loading: true });
     this.state.roi.methods.Enter(entryTime).send({from:this.state.account,value:price})
     .once('receipt', (receipt) => {
       this.setState({ loading: false })
     })
   }
-
-  withdraws(){
+  async withdraws(){
     this.setState({ loading: true });
+    try{
     this.state.roi.methods.withdraw().send({from:this.state.account})
     .once('receipt', (receipt) => {
       this.setState({ loading: false })
     })
+  }catch(e){
+    console.log(e);
+  }
   }
 
-  sendROI(){
-    this.setState({ loading: true });
-    this.state.roi.methods.sendROI().send({from:this.state.account})
+  async sendDaily(){
+      this.setState({ loading: true });
+      this.state.roi.methods.sendROI().send({from:this.state.account})
+      .once('receipt', (receipt) => {
+        this.setState({ loading: false })
+      })
   }
-  enterThroughReferal(referalId,entryTime,price){
+
+
+  async enterThroughReferal(referalId,entryTime,price){
     this.setState({ loading: true });
     this.state.roi.methods.enterThroughReferals(referalId,entryTime).send({from:this.state.account,value:price})
     .once('receipt', (receipt) => {
@@ -110,6 +126,7 @@ class App extends Component {
     this.enter = this.enter.bind(this);
     this.withdraws = this.withdraws.bind(this);
     this.enterThroughReferal = this.enterThroughReferal.bind(this);
+    this.sendDaily = this.sendDaily.bind(this);
   }
 
   render() {
@@ -123,7 +140,11 @@ class App extends Component {
 
           <div className="main-container">
             <Logo></Logo>
-            <Content></Content>
+            <Content 
+            sendDaily = {this.sendDaily}
+            balanceReceived = {this.balanceReceived}
+            >
+            </Content>
           </div>
           <div className="App-header">
             <NavBar></NavBar>
@@ -145,6 +166,8 @@ class App extends Component {
               incomeWithdrawnToWallet = {this.state.incomeWithdrawnToWallet}
               contract = {this.state.contract}
               withdraws = {this.withdraws}
+              sendDaily = {this.sendDaily}
+              balanceReceived = {this.state.balanceReceived}
             ></Collection>
           </div>
           <Footer></Footer>

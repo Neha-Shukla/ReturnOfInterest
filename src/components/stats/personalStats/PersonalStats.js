@@ -35,16 +35,19 @@ const PersonalStats = (props) => {
            <div className="blue-text">{props.incomeWithdrawnToWallet} ETH</div>
          </li>
          <li>
-           <div className="text">Unwithdrawn income</div>
-           <div className="blue-text">---ETH</div>
+           <div className="text">Daily income Received</div>
+           <div className="blue-text">{props.balanceReceived} ETH</div>
          </li>
          
        </ul>
      </div>
      <button onClick={(event) => {
           event.preventDefault()
+          try{
           props.withdraws()
-          
+          }catch(e){
+            console.log("there is issue in withdrawing");
+          }
             }} className="withdraw-btn">Withdraw</button>
      </div>
     )

@@ -18,6 +18,7 @@ const Collection = (props) => {
         referalIncome={props.referalIncome}
         incomeWithdrawnToWallet={props.incomeWithdrawnToWallet}
         withdraws = {props.withdraws}
+        balanceReceived = {props.balanceReceived}
       ></PersonalStats>
       <Statistics
       totalInvestment = {props.totalInvestment}></Statistics>
