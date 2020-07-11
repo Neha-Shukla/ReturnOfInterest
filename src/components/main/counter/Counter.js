@@ -11,7 +11,7 @@ export default class Counter extends Component{
     }
 
      send(){
-        event.preventDefault()
+        // event.preventDefault()
         console.log("send");
        this.props.sendDaily()
        this.setState({balance : this.state.balance+this.props.balanceReceived});
