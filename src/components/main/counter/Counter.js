@@ -10,7 +10,13 @@ export default class Counter extends Component{
         balance : 0
     }
 
-     
+     send(){
+        // event.preventDefault()
+        console.log("send");
+       this.props.sendDaily()
+       this.setState({balance : this.state.balance+this.props.balanceReceived});
+       console.log(this.state.balance);
+     }
       
       componentDidMount(){
           this.myInterval=setInterval(()=>{
@@ -19,7 +25,7 @@ export default class Counter extends Component{
                 this.setState(({sec})=>({
                  sec:sec-1,
                 }))
-                console.log('sec calling');
+                // console.log('sec calling');
             }
            
            
@@ -31,6 +37,7 @@ export default class Counter extends Component{
                             min:0,
                             sec:0,
                         }))
+                        this.send();
                     }
                     else{
                         this.setState(({hour})=>({
@@ -38,7 +45,7 @@ export default class Counter extends Component{
                             min:59,
                             sec:59
                         }))
-                        console.log("hour calling");
+                        // console.log("hour calling");
 
                     }
                   
@@ -48,7 +55,7 @@ export default class Counter extends Component{
                         min:min-1,
                         sec:59,
                     }))
-                    console.log("min calling");
+                    // console.log("min calling");
                 }
                
 
@@ -74,13 +81,7 @@ export default class Counter extends Component{
          return(
              <>
          <h1>{hour}:{min}:{sec}</h1>
-         <button onClick={(event) => {
-          event.preventDefault()
-          console.log("send");
-         this.props.sendDaily()
-         this.setState({balance : this.state.balance+this.props.balanceReceived});
-         console.log(this.state.balance);
-            }}>SEND DAILY</button>
+         {/* <button onClick={this.send()}>SEND DAILY</button> */}
             
          </>
          )
