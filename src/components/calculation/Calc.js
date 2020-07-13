@@ -44,7 +44,7 @@ export default class Calc extends Component {
             const price = this.state.value.toString();
             let created_at = Math.floor(Date.now() / 1000);
             this.props.enterThroughReferal(referalId,created_at,web3.utils.toWei(price,"ether"));
-          }}>Join with rerer</button>
+          }}>Join with refer</button>
       </div>
     </div>
     )

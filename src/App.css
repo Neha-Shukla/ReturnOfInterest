@@ -1,9 +1,9 @@
 /* Styles go here */
 .main {
    text-align: center;
-   background-color: blue;
    background:url(back1.jpg) no-repeat;
    background-position: bottom;
+   background-color: blue;
    background-size: cover;
    height: 100%;
    background-attachment: fixed;

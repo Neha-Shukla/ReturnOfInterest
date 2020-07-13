@@ -8,7 +8,7 @@ const MyOrg = (props) => {
           <ul className="lists">
             <li>
               <div className="text">Invitation link</div>
-              <div className="blue-text"><a href="#">{props.address}</a></div>
+              <div className="blue-text"><a href='#'>{props.address}</a></div>
             </li>
             <li>
               <div className="text">Personal invited partners</div>

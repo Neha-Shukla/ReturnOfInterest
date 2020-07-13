@@ -1,23 +1,14 @@
-import React from "react";
+import React from 'react';
 import './NavBar.css';
-import {Link, BrowserRouter} from 'react-router-dom';
-import Guide from './button-details/Guide';
+import Guide from './button-details/Guide.js';
 const NavBar = () => {
+
+  
   return (
-    
-    <div>
-      <div className="Buttons">
-        <div className="btn-text">
-          <BrowserRouter>
-          <Link to="/guide" component={Guide}></Link>
-          </BrowserRouter>
-       
-        </div>
-        
-      </div>
+    <div className="container">
+      <button className="btn" onClick={Guide}>Guide</button>
     </div>
-    
-  );
-};
+  )
+}
 
 export default NavBar;

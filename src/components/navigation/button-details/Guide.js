@@ -1,9 +1,13 @@
 import React from 'react';
 
+
+
 const Guide = () => {
-  return ( 
-      <div className="content"></div>
-  )
+     console.log('in guide')
+      return (
+        <div> hey </div>
+      )
+    
 }
 
 export default Guide;

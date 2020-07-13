@@ -1,18 +1,12 @@
-.Buttons{
-    margin: 10px;
-    border-top: 1px solid white;
-    border-bottom: 1px solid white;
-    max-width: 420px;
+.container{
+    margin-top: 2px;
 }
 
-.btn-text{
+.btn{
     padding: 13px 35px;
     font-size: 16px;
     font-weight: 700;
-    border: 1px solid white;
+    border: 2px solid black;
     border-radius: 10px;
-    margin: 20px 450px 20px 450px ;
-    font-weight: 700px;
-    background-color: transparent;
-    color: white;
+    background-color: #00eeee;
 }
